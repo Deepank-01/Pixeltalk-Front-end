@@ -34,8 +34,7 @@ const ChatContainer = () => {
 
     return () => unsubscribeFromMessages();
   }, [selectedUser._id, getMessages, subscribeToMessages, unsubscribeFromMessages]);
-
-  useEffect(() => {
+  useEffect(() => {  // this useEffect when there is any message to auto matically side down the chats 
     if (messageEndRef.current && messages) {
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }

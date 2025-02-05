@@ -2,7 +2,7 @@ import React from 'react'
 import { Themes } from '../contants/themes'
 import { useThemestore } from '../store/useThemestore';
 import { Send } from 'lucide-react';
-
+import { motion } from 'framer-motion';
 const Set_theme = () => {
     const PREVIEW_MESSAGES = [
         { id: 1, content: "Hey! from  Deepank this side ", isSent: false },
@@ -11,7 +11,11 @@ const Set_theme = () => {
       const{theme,setTheme}=useThemestore();
 
   return (
-    <div className="h-screen container mx-auto px-4 pt-20 max-w-5xl">
+    <motion.div
+    initial={{ y: -100, opacity: 0 }} // Initial position (off-screen)
+    animate={{ y: 0, opacity: 1 }} // Animate to visible position
+    transition={{ duration: 0.5, ease: "easeOut" }} // Animation duration and easing
+     className="h-screen container mx-auto px-4 pt-20 mt-12 max-w-5xl">
     <div className="space-y-6">
       <div className="flex flex-col gap-1">
         <h2 className="text-lg font-semibold">Theme</h2>
@@ -110,7 +114,7 @@ const Set_theme = () => {
         </div>
       </div>
     </div>
-  </div>
+  </motion.div>
   )
 }
 

@@ -1,13 +1,13 @@
 const AuthImagePattern = ({ title, subtitle }) => {
     return (
-      <div className="hidden lg:flex items-center justify-center bg-base-100  bg-opacity-100 p-12">
+      <div className="hidden lg:flex items-center justify-center bg-base-100  bg-opacity-100 p-12 mt-20">
         <div className="max-w-md text-center">
           <div className="grid grid-cols-3 gap-3 mb-8">
             {[...Array(9)].map((_, i) => (
               <div
                 key={i}
-                className={`aspect-square rounded-2xl bg-primary/10 ${
-                  i % 2 === 0 ? "animate-bounce hover:animate-spin transition  ease-in-out  duration-300 delay-100" : "animate-pulse transition hover:ease-in-out duration-150 "
+                className={`   aspect-square rounded-2xl bg-primary/10 ${
+                  i % 2 === 0 ? "animate-bounce hover:animate-spin transition  ease-in-out  duration-300 delay-100 " : "animate-pulse transition hover:ease-in-out duration-150 "
                 }`}
               />
             ))}

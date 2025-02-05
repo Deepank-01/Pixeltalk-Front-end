@@ -7,7 +7,7 @@ import AuthImagePattern from "../Components/AuthImagePattern";
 import toast from "react-hot-toast";
 import { useAuthStore } from "../store/authstore";
 import { Link, useNavigate } from "react-router";
-
+import { motion } from "framer-motion";
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -41,7 +41,11 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="min-h-screen grid lg:grid-cols-2">
+    <motion.div
+    initial={{ y: -100, opacity: 0 }} // Initial position (off-screen)
+    animate={{ y: 0, opacity: 1 }} // Animate to visible position
+    transition={{ duration: 0.5, ease: "easeOut" }} // Animation duration and easing
+     className="min-h-screen grid lg:grid-cols-2">
       {/* left side */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -154,7 +158,7 @@ const SignUpPage = () => {
         title="Join our community"
         subtitle="Connect with friends, share moments, and stay in touch with your loved ones."
       />
-    </div>
+    </motion.div>
   );
 };
 export default SignUpPage;

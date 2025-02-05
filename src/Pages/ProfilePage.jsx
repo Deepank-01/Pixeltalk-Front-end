@@ -2,7 +2,7 @@ import { useState } from "react";
 // import { useAuthStore } from "../store/useAuthStore";
 import { Camera, Mail, User } from "lucide-react";
 import { useAuthStore } from "../store/authstore";
-
+import { motion } from "framer-motion";
 const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
@@ -28,7 +28,11 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="h-screen pt-20">
+    <motion.div 
+    initial={{ y: -100, opacity: 0 }} // Initial position (off-screen)
+    animate={{ y: 0, opacity: 1 }} // Animate to visible position
+    transition={{ duration: 0.5, ease: "easeOut" }} // Animation duration and easing
+    className="h-screen pt-20">
       <div className="max-w-2xl mx-auto p-4 py-8">
         <div className="bg-base-300 rounded-xl p-6 space-y-8">
           <div className="text-center">
@@ -110,7 +114,7 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default ProfilePage;

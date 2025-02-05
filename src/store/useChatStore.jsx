@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axiosInstance from "../Lib/AxiosInstance";
 import toast from "react-hot-toast";
+import { useAuthStore } from "./authstore";
 export const useChatStore=create((set,get)=>({
 users:[],
 messages: [],
@@ -61,8 +62,29 @@ catch(err){
         //   set({isMessagesLoading:false})
 }
 },
-subscribeToMessages:()=>{},
-unsubscribeFromMessages:()=>{},
+subscribeToMessages:()=>{
+    // get the message from the socket io 
+    const {selectedUser}=get()
+    if(!selectedUser) return
+    // message recevie from the socket io
+    const socket = useAuthStore.getState().socket;
+    if(socket){
+        socket.on("newMessage",(Message)=>{
+            console.log("This the Message.senderId",Message?.senderId)
+            console.log("this the selected_User.id",selectedUser._id)
+            const isMessageSentFromSelectedUser = Message.senderId === selectedUser._id;
+            // Todo: flag for the un read messages : using sender Id i will work that array senders and using that in useEffect change the color of the text 
+            if(isMessageSentFromSelectedUser){
+                set({messages:[...get().messages,Message]})
+            }  
+        })
+    }
+},
+unsubscribeFromMessages:()=>{
+    //why : when we close the window to close the port of socket 
+    const socket = useAuthStore.getState().socket;
+    socket.off("newMessage")
+},
 setSelectedUser: (selectedUser) => set({ selectedUser}),
 
 }))

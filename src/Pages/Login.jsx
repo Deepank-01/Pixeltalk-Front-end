@@ -6,7 +6,7 @@ import { Eye, EyeOff, Loader, Loader2, Lock, Mail, MessageSquare } from "lucide-
 import { useAuthStore } from "../store/authstore";
 import { Link, useNavigate } from "react-router";
 import { Mosaic } from "react-loading-indicators";
-
+import { motion } from "framer-motion";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,7 +25,12 @@ const Login = () => {
     <>
     {
       isLoggingIn? <div className=" h-[90vh] w-[90vw]  mx-auto  flex items-center justify-center"><Mosaic color="#ccb531" size="large" text="Loading " textColor="" /></div>
-      : <div className="h-screen grid lg:grid-cols-2">
+      :
+       <motion.div
+       initial={{ y: -100, opacity: 0 }} // Initial position (off-screen)
+    animate={{ y: 0, opacity: 1 }} // Animate to visible position
+    transition={{ duration: 0.5, ease: "easeOut" }} // Animation duration and easing
+        className="h-screen grid lg:grid-cols-2 ">
       {/* Left Side - Form */}
       <div className="flex flex-col justify-center items-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
@@ -74,7 +79,7 @@ const Login = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   className={`input input-bordered w-full pl-10`}
-                  placeholder="••••••••"
+                  placeholder="Password"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 />
@@ -120,7 +125,7 @@ const Login = () => {
         title={"Welcome back!"}
         subtitle={"Sign in to continue your conversations and catch up with your messages."}
       />
-    </div>
+    </motion.div>
     }
    
     </>

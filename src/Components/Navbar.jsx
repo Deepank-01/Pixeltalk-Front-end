@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 import { Link } from "react-router";
 // import { useAuthStore } from "../store/useAuthStore";
-import { Home, LogOut, MessageSquare, Settings, User } from "lucide-react";
+import { ChartArea, LogOut, MessageSquare, Settings, User } from "lucide-react";
 import { useAuthStore } from "../store/authstore";
 
 const Navbar = () => {
@@ -31,8 +31,8 @@ const Navbar = () => {
                   <span className="hidden sm:inline ">Profile</span>
                 </Link>
                  <Link  to ={"/"} className=" btn btn-xs md:btn-sm gap-3">
-                  <Home className="md:size-5 size-3"/>
-                  <span className="hidden sm:inline">Home</span>
+                  <ChartArea className="md:size-5 size-3"/>
+                  <span className="hidden sm:inline">Chat</span>
                  </Link>
               
               </>

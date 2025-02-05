@@ -6,6 +6,7 @@ import { useAuthStore } from "../store/authstore";
 const ProfilePage = () => {
   const { authUser, isUpdatingProfile, updateProfile } = useAuthStore();
   const [selectedImg, setSelectedImg] = useState(null);
+  const[hover,sethover]=useState(false)
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -70,19 +71,25 @@ const ProfilePage = () => {
             </p>
           </div>
 
-          <div className="space-y-6">
-            <div className="space-y-1.5">
-              <div className="text-sm text-zinc-400 flex items-center gap-2">
-                <User className="w-4 h-4" />
+          <div className="space-y-6" onMouseEnter={()=>sethover(true)} onMouseLeave={()=>sethover(false)}>
+            <div className="space-y-1.5 ">
+            <div className="flex gap-3">
+              <div className="text-sm text-zinc-400 flex items-center gap-2 " >
+                <User className="w-4 h-4"  />
                 Full Name
               </div>
-              <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.fullName}</p>
+              {hover && <div className="md:text-sm text-xs text-red-600"> * Fixed</div>}
+              </div>
+              <p className="px-4 py-2.5 bg-base-200 rounded-lg border ">{authUser?.fullName}</p>
             </div>
 
             <div className="space-y-1.5">
+            <div className=" flex gap-3">
               <div className="text-sm text-zinc-400 flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 Email Address
+              </div>
+              {hover && <div className="md:text-sm text-xs text-red-600"> * Fixed</div>}
               </div>
               <p className="px-4 py-2.5 bg-base-200 rounded-lg border">{authUser?.email}</p>
             </div>

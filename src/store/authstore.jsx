@@ -44,6 +44,7 @@ login:async(data)=>{
         // (localStorage.setItem("User",res?.data?.User))
         localStorage.setItem("User", JSON.stringify(res?.data?.User));
         toast.success("SignUp Success")
+        set({authUser:JSON.parse(localStorage.getItem("User"))})
         console.log(authUser)
         set({isLoggingIn:false})
     }

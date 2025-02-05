@@ -48,7 +48,7 @@ useEffect(() => {
    <Routes>
     <Route path="/" element={authUser?<Home/>:<Login/>}></Route>
     <Route path="/login" element={<Login/>}/>
-    <Route path="/Singin" element ={<SignUpPage/>}/>
+    <Route path="/signup" element ={<SignUpPage/>}/>
     <Route path="/Profile" element={authUser?<ProfilePage/>:<Login/>}></Route>
     <Route path="/setting/theme" element={authUser ?<Set_theme/>:<Login/>}/>
    </Routes>

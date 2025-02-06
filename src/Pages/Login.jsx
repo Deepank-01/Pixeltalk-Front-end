@@ -18,7 +18,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     login(formData);
-    navigate("/")
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);  
   };
 
   return (

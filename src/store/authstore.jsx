@@ -114,6 +114,7 @@ logout:()=>{
 const{DisconnectSocket}=get()
 set({authUser:null})
 localStorage.removeItem("User")
+localStorage.removeItem("token")
 DisconnectSocket()
 console.log("Dosconncected")
 

@@ -37,6 +37,8 @@ signup:async(data)=>{
         // JSON.parse(localStorage.setItem("User",res?.data?.User))
         localStorage.setItem("User", JSON.stringify(res?.data?.User));
         set({authUser:JSON.parse(localStorage.getItem("User"))})
+        localStorage.setItem("token", (res?.data?.token));
+        set({token:(localStorage.getItem("token"))})
         setTimeout(() => {
             console.log("Set_Ttimout inside")
             console.log(BASE_URL)

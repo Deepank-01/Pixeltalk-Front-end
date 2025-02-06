@@ -97,11 +97,21 @@ const Navbar = () => {
         <div className="flex items-center gap-2 md:gap-5">
           {authUser && (
             <>
+          <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                 <img
+                src={authUser.profilePic || "/avatar.png"}
+                alt={authUser.name}
+                className=" size-8 md:size-12 object-cover rounded-full"
+              />
+              </motion.div>
             <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link to={"/"} className={`${isActive("/")? ("bg-primary  btn btn-sm  md:btn-md gap-2"):("btn btn-xs md:btn-sm gap-2")}  transition hover:scale-110 `}>
+                <Link to={"/"} className={`${isActive("/")? ("bg-slate-700 text-primary btn btn-sm  md:btn-md gap-2"):("btn btn-xs md:btn-sm gap-2")}   rounded-md transition hover:scale-110 `}>
                   <ChartArea className="md:size-5 size-3" />
                   <span className="hidden sm:inline">Chat</span>
                 </Link>
@@ -110,7 +120,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.05 }} // Slight scale on hover
                 whileTap={{ scale: 0.95 }} // Slight scale on tap
               >
-                <Link to={"/Profile"} className={`${isActive("/Profile")? ("bg-primary  btn btn-sm  md:btn-md gap-2"):("btn btn-xs md:btn-sm gap-2")}  transition hover:scale-110 `}>
+                <Link to={"/Profile"} className={`${isActive("/Profile")? ("bg-slate-700 text-primary  btn btn-sm  md:btn-md gap-2"):("btn btn-xs md:btn-sm gap-2")}  transition hover:scale-110 `}>
                   <User className="md:size-5 size-3" />
                   <span className="hidden sm:inline">Profile</span>
                 </Link>
@@ -124,7 +134,7 @@ const Navbar = () => {
           >
             <Link
               to={"/setting/theme"}
-              className={` ${isActive("/setting/theme")? ("bg-primary  btn btn-sm  md:btn-md gap-2"):("btn btn-xs md:btn-sm gap-2")}  transition hover:scale-110 `}
+              className={` ${isActive("/setting/theme")? ("bg-slate-700 text-primary   btn btn-sm  md:btn-md gap-2"):("btn btn-xs md:btn-sm gap-2")}  transition hover:scale-110 `}
             >
               <Settings className="md:size-5 size-3" />
               <span className="hidden sm:inline">Themes</span>

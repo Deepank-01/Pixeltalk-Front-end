@@ -5,6 +5,7 @@ import { io } from "socket.io-client";
 const BASE_URL=import.meta.env.VITE_BASE_URL
 export const useAuthStore=create((set,get)=>({
 authUser:localStorage.getItem("User")? JSON.parse(localStorage.getItem("User")) : null,
+token:localStorage.getItem("token")? (localStorage.getItem("token")) : null,
 isSigningUp: false,
 isLoggingIn: false,
 isUpdatingProfile: false,
@@ -63,8 +64,10 @@ login:async(data)=>{
         }
         // (localStorage.setItem("User",res?.data?.User))
         localStorage.setItem("User", JSON.stringify(res?.data?.User));
+        localStorage.setItem("token", (res?.data?.token));
         toast.success("SignUp Success")
         set({authUser:JSON.parse(localStorage.getItem("User"))})
+        set({token:(localStorage.getItem("token"))})
         console.log("Outside of the call from connect")
         set({isLoggingIn:false})
           // Ensure ConnectSocket is called AFTER Zustand updates authUser
